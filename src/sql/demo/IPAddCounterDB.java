@@ -14,6 +14,7 @@ public class IPAddCounterDB{
         while ((line = reader.readLine()) != null) {
             writeIntoBase(line);
         }
+        reader.close();
     }
 
 
@@ -22,8 +23,10 @@ void writeIntoBase (String string) {
     DataBaseHandler dbHandler = new DataBaseHandler();
     try {
         dbHandler.AddTheIP(string);
+        dbHandler.dbConnection.close();       // отключение от БД
+        System.out.println("Отключение от СУБД выполнено.");
     } catch (SQLException e) {
-        System.out.println("There is SQL Exception");;
+        e.printStackTrace();;
     } catch (ClassNotFoundException e) {
         System.out.println("There is ClassNotFoundException ");;
     }
@@ -31,6 +34,7 @@ void writeIntoBase (String string) {
 
     public static void main(String[] args) throws IOException {
         IPAddCounterDB ip = new IPAddCounterDB();
+
     }
 
 
