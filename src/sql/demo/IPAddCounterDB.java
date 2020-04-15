@@ -3,29 +3,22 @@ package sql.demo;
 import org.h2.store.DataReader;
 
 import java.io.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class IPAddCounterDB{
-    BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-    String name1;
-    {
-        try {
-            name1 = reader.readLine();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-    FileInputStream inputStream1;
-    {
-        try {
-            inputStream1 = new FileInputStream(name1);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
+    public IPAddCounterDB() throws IOException {
+        BufferedReader reader = new BufferedReader(new FileReader("C:\\Users\\Andrew\\Desktop\\IT\\1.txt"));
+        String line;
+        while ((line = reader.readLine()) != null) {
+            writeIntoBase(line);
         }
     }
 
 
-    void writeIntoBase (String string) {
+
+void writeIntoBase (String string) {
     DataBaseHandler dbHandler = new DataBaseHandler();
     try {
         dbHandler.AddTheIP(string);
@@ -36,7 +29,9 @@ public class IPAddCounterDB{
     }
 }
 
-
+    public static void main(String[] args) throws IOException {
+        IPAddCounterDB ip = new IPAddCounterDB();
+    }
 
 
 
