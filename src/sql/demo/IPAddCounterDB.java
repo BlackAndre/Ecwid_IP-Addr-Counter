@@ -33,8 +33,10 @@ void writeIntoBase (String string) {
 }
 
     public static void main(String[] args) throws IOException {
+        long start = System.currentTimeMillis();
         IPAddCounterDB ip = new IPAddCounterDB();
-
+        long end = System.currentTimeMillis();
+        System.out.println("Load time: "+(end-start));
     }
 
 

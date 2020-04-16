@@ -16,7 +16,7 @@ public class DataBaseHandler extends Configs{
             Class.forName("com.mysql.cj.jdbc.Driver");
 
         dbConnection = DriverManager.getConnection(connectionString, dbUser, dbPass);
-            System.out.println("Соединение с СУБД выполнено.");
+           // System.out.println("Соединение с СУБД выполнено.");
 
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
