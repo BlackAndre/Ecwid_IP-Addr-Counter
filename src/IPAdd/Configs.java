@@ -1,4 +1,4 @@
-package sql.demo;
+package IPAdd;
 
 public class Configs {
     protected String dbHost = "localhost";

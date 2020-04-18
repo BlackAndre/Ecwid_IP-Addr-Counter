@@ -1,12 +1,6 @@
-package sql.demo;
+package IPAdd;
 
-import org.w3c.dom.ls.LSOutput;
-
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.util.ArrayList;
+import java.sql.*;
 
 public class DataBaseHandler extends Configs{
     Connection dbConnection;
@@ -30,12 +24,28 @@ public class DataBaseHandler extends Configs{
     }
     public void AddTheIP (String string) throws SQLException, ClassNotFoundException {
         String insert = "INSERT IGNORE INTO " + Const.IP_TABLE + "(" + Const.IP_ADDRESSES + ")" +
-                " VALUES("+ string +")";
-        System.out.println(insert);
+                " VALUES(?)";
         PreparedStatement prSt = getDbConnection().prepareStatement(insert);
-        /*prSt.setString(1, string);
+        String query = "SELECT COUNT(1) FROM ip.ip";
 
-        prSt.executeUpdate();*/
+        prSt.setString(1, string);
+        prSt.executeUpdate();
+
     }
+    public int getRowNumber(){
 
+        int numberRow = 0;
+
+        try{
+            String query = "select count(*) from ip.ip";
+            PreparedStatement st = getDbConnection().prepareStatement(query);
+            ResultSet result = st.executeQuery();
+            while(result.next()){
+                numberRow = result.getInt("count(*)");
+            }
+        }catch (Exception ex){
+            System.out.println(ex.getMessage());
+        }
+        return numberRow;
+    }
 }

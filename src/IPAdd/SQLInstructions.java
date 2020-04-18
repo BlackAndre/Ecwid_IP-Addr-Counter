@@ -1,7 +1,8 @@
-package sql.demo;
+package IPAdd;
 
-public class CreateBase {
-  /*  CREATE SCHEMA `ip` ;
+public class SQLInstructions {
+    /*
+    CREATE SCHEMA `ip` ;
     CREATE TABLE `ip`.`ip` (
             `idIP` INT NOT NULL AUTO_INCREMENT,
   `IP` VARCHAR(45) NOT NULL,

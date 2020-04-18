@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/SQLDEMO.iml" filepath="$PROJECT_DIR$/SQLDEMO.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Ecwid_IP-Addr-Counter.iml" filepath="$PROJECT_DIR$/Ecwid_IP-Addr-Counter.iml" />
     </modules>
   </component>
 </project>

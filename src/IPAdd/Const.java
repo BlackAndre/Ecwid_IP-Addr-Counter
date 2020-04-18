@@ -1,4 +1,4 @@
-package sql.demo;
+package IPAdd;
 
 public class Const {
     public static final String IP_TABLE = "ip";
