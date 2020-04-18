@@ -19,15 +19,11 @@ public class DataBaseHandler extends Configs{
         return dbConnection;
     }
 
-    public void closeConnection () throws SQLException {
-        dbConnection.close();
-    }
+
     public void AddTheIP (String string) throws SQLException, ClassNotFoundException {
         String insert = "INSERT IGNORE INTO " + Const.IP_TABLE + "(" + Const.IP_ADDRESSES + ")" +
                 " VALUES(?)";
         PreparedStatement prSt = getDbConnection().prepareStatement(insert);
-        String query = "SELECT COUNT(1) FROM ip.ip";
-
         prSt.setString(1, string);
         prSt.executeUpdate();
 

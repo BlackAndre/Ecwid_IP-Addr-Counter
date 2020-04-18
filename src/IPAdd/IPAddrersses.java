@@ -12,6 +12,7 @@ public class IPAddrersses {
             writeIntoBase(dbHandler, line);
             dbHandler.dbConnection.close();
         }
+        System.out.println(dbHandler.getRowNumber() + " строк записано");
         reader.close();
         dbHandler.dbConnection.close();
     }
