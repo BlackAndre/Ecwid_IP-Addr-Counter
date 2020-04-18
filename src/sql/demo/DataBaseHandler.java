@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class DataBaseHandler extends Configs{
     Connection dbConnection;
@@ -28,10 +29,13 @@ public class DataBaseHandler extends Configs{
         dbConnection.close();
     }
     public void AddTheIP (String string) throws SQLException, ClassNotFoundException {
-        String insert = "INSERT IGNORE INTO " + Const.IP_TABLE + "(" + Const.IP_ADDRESSES + ")" + " VALUES(?)";
+        String insert = "INSERT IGNORE INTO " + Const.IP_TABLE + "(" + Const.IP_ADDRESSES + ")" +
+                " VALUES("+ string +")";
+        System.out.println(insert);
         PreparedStatement prSt = getDbConnection().prepareStatement(insert);
-        prSt.setString(1, string);
-        prSt.executeUpdate();
+        /*prSt.setString(1, string);
+
+        prSt.executeUpdate();*/
     }
 
 }

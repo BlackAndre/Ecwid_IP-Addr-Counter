@@ -1,38 +1,31 @@
 package sql.demo;
-
-import org.h2.store.DataReader;
-
 import java.io.*;
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class IPAddCounterDB{
-    public IPAddCounterDB() throws IOException {
-        BufferedReader reader = new BufferedReader(new FileReader("C:\\Users\\Andrew\\Desktop\\IT\\1.txt"));
+    public IPAddCounterDB() throws IOException, SQLException {
+        BufferedReader reader = new BufferedReader(new FileReader("C:\\Users\\Andrew\\Downloads\\ip_addresses\\test.txt"));
+        DataBaseHandler dbHandler = new DataBaseHandler();
         String line;
         while ((line = reader.readLine()) != null) {
-            writeIntoBase(line);
+            writeIntoBase(dbHandler, line);
+            dbHandler.dbConnection.close();
         }
-        reader.close();
+            reader.close();
+        dbHandler.dbConnection.close();
+        // отключение от БД
+        System.out.println("Отключение от СУБД выполнено.");
     }
 
-
-
-void writeIntoBase (String string) {
-    DataBaseHandler dbHandler = new DataBaseHandler();
+void writeIntoBase (DataBaseHandler dbHandler,String string) {
     try {
         dbHandler.AddTheIP(string);
-        dbHandler.dbConnection.close();       // отключение от БД
-        System.out.println("Отключение от СУБД выполнено.");
-    } catch (SQLException e) {
-        e.printStackTrace();;
-    } catch (ClassNotFoundException e) {
-        System.out.println("There is ClassNotFoundException ");;
+    } catch (SQLException | ClassNotFoundException e) {
+        e.printStackTrace();
     }
 }
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, SQLException {
         long start = System.currentTimeMillis();
         IPAddCounterDB ip = new IPAddCounterDB();
         long end = System.currentTimeMillis();
